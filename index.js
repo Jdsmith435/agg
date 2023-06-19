@@ -1,3 +1,4 @@
+window.onload = checkGameStorage();
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -18,6 +19,23 @@ function loadGame() {
   console.log(cat);
 }
 
-function pressButton() {
-  console.log("PRESSED!");
+function checkGameStorage() {
+  console.log("Checking game data");
+  const gameData = localStorage.getItem("aggGameData");
+  if (!gameData) {
+    console.log("No DATA");
+    localStorage.setItem(
+      "aggGameData",
+      JSON.stringify({
+        dateStart: "Date Here",
+      })
+    );
+  } else {
+    console.log("has DATA");
+    console.log(JSON.parse(gameData).dateStart);
+  }
+}
+
+function clearGameStorage() {
+  localStorage.clear();
 }
