@@ -9,6 +9,15 @@ function createGamePiece() {
   ctx.closePath();
 }
 
+function saveGame() {
+  localStorage.setItem("myCat", "Tom");
+}
+
+function loadGame() {
+  const cat = localStorage.getItem("myCat");
+  console.log(cat);
+}
+
 function pressButton() {
   console.log("PRESSED!");
 }
