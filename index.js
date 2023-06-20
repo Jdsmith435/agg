@@ -20,6 +20,12 @@ function loadGame() {
 }
 
 function checkGameStorage() {
+  if (dailySignIn()) {
+    console.log("has Signed In Today");
+  } else {
+    console.log("Has not signed in today");
+    // ADD COINS TO USER DATA
+  }
   console.log("Checking game data");
   const gameData = localStorage.getItem("aggGameData");
   if (!gameData) {
