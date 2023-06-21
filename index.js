@@ -20,25 +20,9 @@ function loadGame() {
 }
 
 function checkGameStorage() {
-  if (dailySignIn()) {
-    console.log("has Signed In Today");
-  } else {
+  if (!dailySignIn()) {
     console.log("Has not signed in today");
-    // ADD COINS TO USER DATA
-  }
-  console.log("Checking game data");
-  const gameData = localStorage.getItem("aggGameData");
-  if (!gameData) {
-    console.log("No DATA");
-    localStorage.setItem(
-      "aggGameData",
-      JSON.stringify({
-        dateStart: "Date Here",
-      })
-    );
-  } else {
-    console.log("has DATA");
-    console.log(JSON.parse(gameData).dateStart);
+    addDSIPoints(getUserData());
   }
 }
 
