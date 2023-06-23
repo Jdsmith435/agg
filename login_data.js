@@ -7,27 +7,29 @@ function dailySignIn() {
   const dsiData = localStorage.getItem("DSI");
   if (dsiData) {
     const dsiData_asJSON = JSON.parse(dsiData);
-    const dateOfLastSignIn = new Date(dsiData_asJSON.lastSignIn);
-    if (!isItToday(dateOfLastSignIn)) {
-      dsiData_asJSON.lastSignIn = new Date().toUTCString();
-      dsiData_asJSON.steak++;
-      localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
-      return false;
-    }
-    return false;
+    recordDailySignInData(dsiData_asJSON);
   } else {
     addDSIRecords();
+    recordDailySignInData(JSON.parse(localStorage.getItem("DSI")));
   }
 }
 
+function checkSignInToday() {
+  const dsiData = localStorage.getItem("DSI");
+  if (dsiData) {
+    const dateOfLastSignIn = new Date(JSON.parse(dsiData).lastSignIn);
+    return isItToday(dateOfLastSignIn);
+  }
+  return false;
+}
+
+//mack
 function isItToday(date) {
   const today = new Date();
   if (
-    console.log(
-      today.getDay() == date.getDay() &&
-        today.getMonth().toString() == date.getMonth().toString() &&
-        today.getYear().toString() == date.getYear().toString()
-    )
+    today.getDay() == date.getDay() &&
+    today.getMonth().toString() == date.getMonth().toString() &&
+    today.getYear().toString() == date.getYear().toString()
   ) {
     return true;
   }
@@ -43,4 +45,10 @@ function addDSIRecords() {
       streak: 1,
     })
   );
+}
+
+function recordDailySignInData(dsiData_asJSON) {
+  dsiData_asJSON.lastSignIn = new Date().toUTCString();
+  dsiData_asJSON.steak++;
+  localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
 }
