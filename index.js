@@ -1,6 +1,16 @@
-window.onload = checkGameStorage();
+window.onload = main();
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+var gameData = 0;
+
+function main() {
+  if (!dailySignIn()) {
+    console.log("Has not signed in today");
+    addDSIPoints(getUserData());
+  }
+  gameData = JSON.parse(getUserData());
+  updatePoints_html(gameData.totalPoints);
+}
 
 function createGamePiece() {
   ctx.beginPath();
@@ -17,13 +27,6 @@ function saveGame() {
 function loadGame() {
   const cat = localStorage.getItem("myCat");
   console.log(cat);
-}
-
-function checkGameStorage() {
-  if (!dailySignIn()) {
-    console.log("Has not signed in today");
-    addDSIPoints(getUserData());
-  }
 }
 
 function clearGameStorage() {
