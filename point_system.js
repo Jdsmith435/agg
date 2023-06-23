@@ -5,3 +5,9 @@ function addDSIPoints(userData) {
   userData.totalPoints += dsiPoints;
   saveUserData(userData);
 }
+
+function addNumPoints(userData, pointsToAdd) {
+  dailySignIn();
+  userData.totalPoints += pointsToAdd;
+  saveUserData(userData);
+}

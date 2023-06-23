@@ -5,9 +5,9 @@ var gameData = 0;
 
 function main() {
   if (!checkSignInToday()) {
-    addDSIPoints(getUserData());
+    addDSIPoints(getUserData_asJSON());
   }
-  gameData = JSON.parse(getUserData());
+  gameData = getUserData_asJSON();
   updatePoints_html(gameData.totalPoints);
 }
 

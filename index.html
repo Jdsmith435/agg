@@ -13,13 +13,16 @@
   </head>
   <body>
     <main>
-      <canvas id="gameCanvas"></canvas>
       <h1>ägg</h1>
       <h2 id="pointHeader">POINTS:</h2>
       <button onclick="createGamePiece()">PRESS ME</button>
       <button onclick="saveGame()">Save Game</button>
       <button onclick="loadGame()">Load Game</button>
       <button onclick="clearGameStorage()">clear Game</button>
+      <button onclick="addNumPoints(JSON.parse(getUserData()), 50)">
+        Add 50 Game
+      </button>
+      <canvas id="gameCanvas"></canvas>
     </main>
     <script src="html_view.js"></script>
     <script src="user_data.js"></script>
