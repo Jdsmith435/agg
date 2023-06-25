@@ -3,8 +3,20 @@
   height: auto;
 }
 
+body {
+  background-color: green;
+}
+
+#gameTitle {
+  color: red;
+}
+
 @media only screen and (min-width: 844px) {
   body {
     background-color: lightblue;
+  }
+
+  #gameTitle {
+    color: black;
   }
 }
