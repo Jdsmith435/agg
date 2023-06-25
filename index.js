@@ -8,7 +8,7 @@ function main() {
     addDSIPoints(getUserData_asJSON());
   }
   gameData = getUserData_asJSON();
-  updatePoints_html(gameData.totalPoints);
+  updateView_Points(gameData);
 }
 
 function createGamePiece() {
@@ -30,4 +30,20 @@ function loadGame() {
 
 function clearGameStorage() {
   localStorage.clear();
+}
+
+function print_userObject() {
+  console.log(getUserData_asJSON());
+}
+
+// point functions
+function addPoints(points) {
+  const gameData = getUserData_asJSON();
+  addNumPoints(gameData, points);
+  updateView_Points(gameData);
+}
+
+// View functions
+function updateView_Points(gameData) {
+  updatePoints_html(gameData.totalPoints);
 }
