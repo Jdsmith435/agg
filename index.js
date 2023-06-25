@@ -9,6 +9,7 @@ function main() {
   }
   gameData = getUserData_asJSON();
   updateView_Points(gameData);
+  displayLogInData(getLogInData_asJSON());
 }
 
 function createGamePiece() {

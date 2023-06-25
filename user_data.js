@@ -7,6 +7,6 @@ function getUserData_asJSON() {
   if (userData) {
     return JSON.parse(userData);
   } else {
-    return { totalPoints: 0 }; // probably need creature data here too
+    return { totalPoints: 0, petName: "TODO", petAge: "TODO" }; // probably need creature data here too
   }
 }

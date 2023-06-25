@@ -52,3 +52,8 @@ function recordDailySignInData(dsiData_asJSON) {
   dsiData_asJSON.steak++;
   localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
 }
+
+function getLogInData_asJSON() {
+  console.log("getting data");
+  return JSON.parse(localStorage.getItem("DSI"));
+}
