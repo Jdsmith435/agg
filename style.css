@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 #gameCanvas {
   width: 100%;
   height: auto;
@@ -9,6 +13,7 @@ body {
 
 #gameTitle {
   color: red;
+  font: 3em sans-serif;
 }
 
 @media only screen and (min-width: 844px) {
