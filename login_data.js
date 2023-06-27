@@ -41,15 +41,15 @@ function addDSIRecords() {
   localStorage.setItem(
     "DSI",
     JSON.stringify({
-      lastSignIn: new Date().toUTCString().toLocaleLowerCase(),
-      streak: 1,
+      lastSignIn: new Date().toLocaleDateString(),
+      streak: 0,
     })
   );
 }
 
 function recordDailySignInData(dsiData_asJSON) {
-  dsiData_asJSON.lastSignIn = new Date().toUTCString();
-  dsiData_asJSON.steak++;
+  dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
+  dsiData_asJSON.streak++;
   localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
 }
 
