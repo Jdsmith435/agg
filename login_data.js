@@ -41,7 +41,7 @@ function addDSIRecords() {
   localStorage.setItem(
     "DSI",
     JSON.stringify({
-      lastSignIn: new Date().toUTCString(),
+      lastSignIn: new Date().toUTCString().toLocaleLowerCase(),
       streak: 1,
     })
   );

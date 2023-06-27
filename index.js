@@ -37,6 +37,10 @@ function print_userObject() {
   console.log(getUserData_asJSON());
 }
 
+function print_loginData() {
+  console.log(getLogInData_asJSON());
+}
+
 // point functions
 function addPoints(points) {
   const gameData = getUserData_asJSON();
