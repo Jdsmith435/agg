@@ -18,14 +18,19 @@
         <h2 id="pointHeader">Points:</h2>
         <h2 id="streak">Streak:</h2>
       </div>
+      <button type="button" class="collapsible">Open Collapsible</button>
+      <div class="content">
+        <button onclick="createGamePiece()">PRESS ME</button>
+        <button onclick="saveGame()">Save Game</button>
+        <button onclick="loadGame()">Load Game</button>
+        <button onclick="clearGameStorage()">clear Game</button>
+        <button onclick="addPoints(50)">Add 50</button>
+        <button onclick="print_userObject()">Print player data</button>
+        <button onclick="print_loginData()">Print login data</button>
+      </div>
       <canvas id="gameCanvas"></canvas>
-      <button onclick="createGamePiece()">PRESS ME</button>
-      <button onclick="saveGame()">Save Game</button>
-      <button onclick="loadGame()">Load Game</button>
-      <button onclick="clearGameStorage()">clear Game</button>
-      <button onclick="addPoints(50)">Add 50</button>
-      <button onclick="print_userObject()">Print player data</button>
-      <button onclick="print_loginData()">Print login data</button>
+
+      <div></div>
     </main>
     <script src="html_view.js"></script>
     <script src="user_data.js"></script>
