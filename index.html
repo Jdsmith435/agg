@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ägg</title>
@@ -18,7 +18,9 @@
         <h2 id="pointHeader">Points:</h2>
         <h2 id="streak">Streak:</h2>
       </div>
-      <button type="button" class="collapsible">Open Collapsible</button>
+      <button type="button" class="collapsibleButtonList">
+        Open Collapsible
+      </button>
       <div class="content">
         <button onclick="createGamePiece()">PRESS ME</button>
         <button onclick="saveGame()">Save Game</button>
@@ -29,7 +31,6 @@
         <button onclick="print_loginData()">Print login data</button>
       </div>
       <canvas id="gameCanvas"></canvas>
-
       <div></div>
     </main>
     <script src="html_view.js"></script>
