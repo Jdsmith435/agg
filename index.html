@@ -7,13 +7,13 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>ägg</title>
+    <title id="titleText">Wancha</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <main>
-      <p id="gameTitle">ägg</p>
+      <p id="titleText">Wancha</p>
       <div id="statsBar">
         <h2 id="pointHeader">Points:</h2>
         <h2 id="streak">Streak:</h2>
@@ -30,7 +30,9 @@
         <button onclick="print_userObject()">Print player data</button>
         <button onclick="print_loginData()">Print login data</button>
       </div>
-      <canvas id="gameCanvas"></canvas>
+      <div id="canvasHolder">
+        <canvas id="gameCanvas"></canvas>
+      </div>
       <div></div>
     </main>
     <script src="html_view.js"></script>
