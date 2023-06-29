@@ -11,7 +11,10 @@ html {
 
 #titleText {
   font-family: "Malboro";
-  font-size: 3em;
+  font-size: 5em;
+  color: #f26a05;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 }
 
 #statsBar {
@@ -42,9 +45,9 @@ body {
   min-height: 100%;
   background: linear-gradient(
     180deg,
-    rgba(240, 234, 214, 1) 0%,
-    rgba(235, 235, 227, 1) 82%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(252, 243, 228, 1) 0%,
+    rgba(235, 235, 227, 1) 90%,
+    rgba(221, 168, 152, 1) 100%
   );
   margin: 0px;
 }
@@ -52,11 +55,10 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 95vh;
   padding: 7px;
-  background-color: #b06a3a;
 }
 
 /* Style the button that is used to open and close the collapsible content */
