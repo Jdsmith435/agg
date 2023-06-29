@@ -1,9 +1,11 @@
 function updatePoints_html(points) {
-  document.getElementById("pointHeader").innerHTML = "Points: " + points;
+  document.getElementById("statusBarTextPoints").innerHTML =
+    "Points: " + points;
 }
 
 function displayLogInData(userData) {
-  document.getElementById("streak").innerHTML = "Streak: " + userData.streak;
+  document.getElementById("statusBarTextStreak").innerHTML =
+    "Streak: " + userData.streak;
 }
 
 var coll = document.getElementsByClassName("collapsibleButtonList");
