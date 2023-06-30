@@ -5,8 +5,27 @@
   font-style: normal;
 }
 
+* {
+  margin: 0;
+}
+
 html {
   font-size: 16px;
+  height: 100%;
+
+  background-color: blue;
+}
+body {
+  height: 100%;
+
+  background-color: yellow;
+  background: linear-gradient(
+    180deg,
+    rgba(252, 243, 228, 1) 0%,
+    rgba(235, 235, 227, 1) 90%,
+    rgba(221, 168, 152, 1) 100%
+  );
+  margin: 0px;
 }
 
 #titleText {
@@ -26,18 +45,11 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
 }
 
 #gameCanvas {
-  height: 100%;
-  width: 100%;
-  background-color: #000000;
+  background-color: rgba(221, 221, 221, 0.7);
   margin: 5px;
-}
-
-#informationDiv {
-  height: 40%;
 }
 
 #canvasHolder {
@@ -45,28 +57,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: brown;
   padding: 5px;
-}
-
-body {
-  min-height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(252, 243, 228, 1) 0%,
-    rgba(235, 235, 227, 1) 90%,
-    rgba(221, 168, 152, 1) 100%
-  );
-  margin: 0px;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 95vh;
-  padding: 7px;
 }
 
 /* Style the button that is used to open and close the collapsible content */
@@ -75,7 +66,6 @@ main {
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
   border: none;
   text-align: left;
   outline: none;
@@ -94,14 +84,4 @@ main {
   display: none;
   overflow: hidden;
   background-color: #f1f1f1;
-}
-
-@media only screen and (min-width: 844px) {
-  body {
-    background-color: lightblue;
-  }
-
-  #gameTitle {
-    color: black;
-  }
 }

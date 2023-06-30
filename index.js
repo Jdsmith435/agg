@@ -1,6 +1,8 @@
 window.onload = main();
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+canvas.setAttribute("width", window.innerWidth - 15 + "px");
+canvas.setAttribute("height", window.innerHeight * 0.4 + "px");
 var gameData = 0;
 
 function main() {
