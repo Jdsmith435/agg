@@ -50,6 +50,12 @@ function addPoints(points) {
   updateView_Points(gameData);
 }
 
+function removePoints(points) {
+  const gameData = getUserData_asJSON();
+  removeNumPoints(gameData, points);
+  updateView_Points(gameData);
+}
+
 // View functions
 function updateView_Points(gameData) {
   updatePoints_html(gameData.totalPoints);

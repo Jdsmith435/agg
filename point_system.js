@@ -10,3 +10,8 @@ function addNumPoints(userData, pointsToAdd) {
   userData.totalPoints += pointsToAdd;
   saveUserData(userData);
 }
+
+function removeNumPoints(userData, pointsToRemove) {
+  userData.totalPoints -= pointsToRemove;
+  saveUserData(userData);
+}
