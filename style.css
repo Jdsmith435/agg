@@ -5,19 +5,13 @@
   font-style: normal;
 }
 
-* {
-  margin: 0;
-}
-
 html {
   font-size: 16px;
   height: 100%;
-
   background-color: blue;
 }
 body {
   height: 100%;
-
   background-color: yellow;
   background: linear-gradient(
     180deg,
@@ -28,12 +22,22 @@ body {
   margin: 0px;
 }
 
+#informationContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
 #titleText {
   font-family: "Malboro";
   font-size: 5em;
   color: #f26a05;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+  margin: 0pt;
 }
 
 #statusBarTextPoints,
@@ -45,10 +49,11 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  width: 100%;
 }
 
 #gameCanvas {
-  background-color: rgba(221, 221, 221, 0.7);
+  background-color: rgb(150, 150, 150);
   margin: 5px;
 }
 
@@ -58,6 +63,8 @@ body {
   justify-content: center;
   align-items: center;
   padding: 5px;
+  background-color: #f26a05;
+  margin: 5px;
 }
 
 /* Style the button that is used to open and close the collapsible content */
