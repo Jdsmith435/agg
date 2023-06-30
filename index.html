@@ -11,28 +11,30 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <div id="informationContainer">
-      <p id="titleText">Wancha</p>
-      <div id="statsBar">
-        <h2 id="statusBarTextPoints">Points:</h2>
-        <h2 id="statusBarTextStreak">Streak:</h2>
+    <main>
+      <div id="informationContainer">
+        <p id="titleText">Wancha</p>
+        <div id="statsBar">
+          <h2 id="statusBarTextPoints">Points:</h2>
+          <h2 id="statusBarTextStreak">Streak:</h2>
+        </div>
       </div>
-    </div>
-    <button type="button" class="collapsibleButtonList">
-      Open Collapsible
-    </button>
-    <div class="content">
-      <button onclick="createGamePiece()">PRESS ME</button>
-      <button onclick="saveGame()">Save Game</button>
-      <button onclick="loadGame()">Load Game</button>
-      <button onclick="clearGameStorage()">clear Game</button>
-      <button onclick="addPoints(50)">Add 50</button>
-      <button onclick="print_userObject()">Print player data</button>
-      <button onclick="print_loginData()">Print login data</button>
-    </div>
-    <div id="canvasHolder">
-      <canvas id="gameCanvas"></canvas>
-    </div>
+      <button type="button" class="collapsibleButtonList">
+        Open Collapsible
+      </button>
+      <div class="content">
+        <button onclick="createGamePiece()">PRESS ME</button>
+        <button onclick="saveGame()">Save Game</button>
+        <button onclick="loadGame()">Load Game</button>
+        <button onclick="clearGameStorage()">clear Game</button>
+        <button onclick="addPoints(50)">Add 50</button>
+        <button onclick="print_userObject()">Print player data</button>
+        <button onclick="print_loginData()">Print login data</button>
+      </div>
+      <div id="canvasHolder">
+        <canvas id="gameCanvas"></canvas>
+      </div>
+    </main>
     <script src="html_view.js"></script>
     <script src="user_data.js"></script>
     <script src="point_system.js"></script>
