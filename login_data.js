@@ -26,14 +26,16 @@ function checkSignInToday() {
 //mack
 function isItToday(date) {
   const today = new Date();
-  if (
+  return (
     today.getDay() == date.getDay() &&
     today.getMonth().toString() == date.getMonth().toString() &&
     today.getYear().toString() == date.getYear().toString()
-  ) {
-    return true;
-  }
-  return false;
+  );
+}
+
+function isItMoreThanADay(date) {
+  const totalDays = new Date().getTime() - new Date(date).getTime();
+  return totalDays > 1;
 }
 
 // Store DSI records
@@ -49,6 +51,9 @@ function addDSIRecords() {
 
 function recordDailySignInData(dsiData_asJSON) {
   dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
+  if (isItMoreThanADay(dsiData_asJSON.lastSignIn)) {
+    dsiData_asJSON.streak = 0;
+  }
   dsiData_asJSON.streak++;
   localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
 }
