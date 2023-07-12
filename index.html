@@ -11,11 +11,13 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <script type="module">
       import Main from "./index.js";
-      console.log("Here");
-      var main = new Main();
+      document.addEventListener("DOMContentLoaded", function () {
+        var main = new Main();
+        main.dailySignIn();
+      });
     </script>
   </head>
-  <body onload="dailySignIn()">
+  <body>
     <main>
       <div id="informationContainer">
         <p id="titleText">Wancha</p>

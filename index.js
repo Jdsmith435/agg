@@ -19,6 +19,8 @@ export default class Main {
     this.htmlView = new HtmlView();
     this.loginHandler = new LoginHandler();
 
+    this.gameData = this.userData.getUserData_asJSON();
+
     this.canvas = document.getElementById("gameCanvas");
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
     this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
@@ -26,9 +28,9 @@ export default class Main {
 
   dailySignIn() {
     if (!this.loginHandler.checkSignInToday()) {
-      this.pointSystem.addDSIPoints(getUserData_asJSON());
+      this.pointSystem.addDSIPoints(this.gameData);
     }
-    this.htmlView.updateView_Points(this.userData);
+    this.htmlView.updatePoints_html(this.gameData);
     this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
   }
 

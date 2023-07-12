@@ -1,9 +1,9 @@
 export default class UserData {
-  static saveUserData(userData) {
+  saveUserData(userData) {
     localStorage.setItem("userData", JSON.stringify(userData));
   }
 
-  static getUserData_asJSON() {
+  getUserData_asJSON() {
     const userData = localStorage.getItem("userData");
     if (userData) {
       return JSON.parse(userData);

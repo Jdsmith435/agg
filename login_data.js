@@ -1,5 +1,5 @@
 export default class LoginHandler {
-  static dailySignIn() {
+  dailySignIn() {
     const dsiData = localStorage.getItem("DSI");
     if (dsiData) {
       const dsiData_asJSON = JSON.parse(dsiData);
@@ -10,17 +10,17 @@ export default class LoginHandler {
     }
   }
 
-  static checkSignInToday() {
+  checkSignInToday() {
     const dsiData = localStorage.getItem("DSI");
     if (dsiData) {
       const dateOfLastSignIn = new Date(JSON.parse(dsiData).lastSignIn);
-      return isItToday(dateOfLastSignIn);
+      return this.isItToday(dateOfLastSignIn);
     }
     return false;
   }
 
   //mack
-  static isItToday(date) {
+  isItToday(date) {
     const today = new Date();
     return (
       today.getDay() == date.getDay() &&
@@ -29,13 +29,13 @@ export default class LoginHandler {
     );
   }
 
-  static isItMoreThanADay(date) {
+  isItMoreThanADay(date) {
     const totalDays = new Date().getTime() - new Date(date).getTime();
     return totalDays > 1;
   }
 
   // Store DSI records
-  static addDSIRecords() {
+  addDSIRecords() {
     localStorage.setItem(
       "DSI",
       JSON.stringify({
@@ -45,7 +45,7 @@ export default class LoginHandler {
     );
   }
 
-  static recordDailySignInData(dsiData_asJSON) {
+  recordDailySignInData(dsiData_asJSON) {
     dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
     if (isItMoreThanADay(dsiData_asJSON.lastSignIn)) {
       dsiData_asJSON.streak = 0;
@@ -54,7 +54,7 @@ export default class LoginHandler {
     localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
   }
 
-  static getLogInData_asJSON() {
+  getLogInData_asJSON() {
     console.log("getting data");
     return JSON.parse(localStorage.getItem("DSI"));
   }
