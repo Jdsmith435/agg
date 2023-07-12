@@ -9,8 +9,13 @@
     <title id="titleText">Wancha</title>
     <link rel="stylesheet" href="./style.css" />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <script type="module">
+      import Main from "./index.js";
+      console.log("Here");
+      var main = new Main();
+    </script>
   </head>
-  <body>
+  <body onload="dailySignIn()">
     <main>
       <div id="informationContainer">
         <p id="titleText">Wancha</p>
@@ -23,7 +28,7 @@
         Open Collapsible
       </button>
       <div class="content">
-        <button onclick="createGamePiece()">PRESS ME</button>
+        <button onclick="cloudBackground()">PRESS ME</button>
         <button onclick="saveGame()">Save Game</button>
         <button onclick="loadGame()">Load Game</button>
         <button onclick="clearGameStorage()">clear Game</button>
@@ -36,10 +41,6 @@
         <canvas id="gameCanvas"></canvas>
       </div>
     </main>
-    <script src="html_view.js"></script>
-    <script src="user_data.js"></script>
-    <script src="point_system.js"></script>
     <script src="login_data.js"></script>
-    <script src="index.js"></script>
   </body>
 </html>

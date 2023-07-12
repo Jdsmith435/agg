@@ -1,62 +1,87 @@
-window.onload = main();
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
-canvas.setAttribute("width", window.innerWidth - 15 + "px");
-canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
-var gameData = 0;
+import PointSystem from "./point_system.js";
+import UserData from "./user_data.js";
+import HtmlView from "./html_view.js";
+import LoginHandler from "./login_data.js";
 
-function main() {
-  if (!checkSignInToday()) {
-    addDSIPoints(getUserData_asJSON());
+export default class Main {
+  gameData;
+  canvas;
+
+  // Utilities
+  pointSystem;
+  userData;
+  htmlView;
+  loginHandler;
+
+  constructor() {
+    this.pointSystem = new PointSystem();
+    this.userData = new UserData();
+    this.htmlView = new HtmlView();
+    this.loginHandler = new LoginHandler();
+
+    this.canvas = document.getElementById("gameCanvas");
+    this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
+    this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
   }
-  gameData = getUserData_asJSON();
-  updateView_Points(gameData);
-  displayLogInData(getLogInData_asJSON());
-}
 
-function createGamePiece() {
-  ctx.beginPath();
-  ctx.rect(20, 40, 50, 50);
-  ctx.fillStyle = "#FF0000";
-  ctx.fill();
-  ctx.closePath();
-}
+  dailySignIn() {
+    if (!this.loginHandler.checkSignInToday()) {
+      this.pointSystem.addDSIPoints(getUserData_asJSON());
+    }
+    this.htmlView.updateView_Points(this.userData);
+    this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
+  }
 
-function saveGame() {
-  localStorage.setItem("myCat", "Tom");
-}
+  cloudBackground() {
+    let yPos = 0;
+    let xPos = 0;
+    while (false) {
+      var ctx = this.canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.rect(xPos, yPos, 40, 40);
+      ctx.fillStyle = "#FF0000";
+      ctx.fill();
+      ctx.closePath();
+      ctx.draw;
+      xPos++;
+    }
+  }
 
-function loadGame() {
-  const cat = localStorage.getItem("myCat");
-  console.log(cat);
-}
+  saveGame() {
+    localStorage.setItem("myCat", "Tom");
+  }
 
-function clearGameStorage() {
-  localStorage.clear();
-}
+  loadGame() {
+    const cat = localStorage.getItem("myCat");
+    console.log(cat);
+  }
 
-function print_userObject() {
-  console.log(getUserData_asJSON());
-}
+  clearGameStorage() {
+    localStorage.clear();
+  }
 
-function print_loginData() {
-  console.log(getLogInData_asJSON());
-}
+  print_userObject() {
+    console.log(this.getUserData_asJSON());
+  }
 
-// point functions
-function addPoints(points) {
-  const gameData = getUserData_asJSON();
-  addNumPoints(gameData, points);
-  updateView_Points(gameData);
-}
+  print_loginData() {
+    console.log(this.getLogInData_asJSON());
+  }
 
-function removePoints(points) {
-  const gameData = getUserData_asJSON();
-  removeNumPoints(gameData, points);
-  updateView_Points(gameData);
-}
+  // point functions
+  addPoints(points) {
+    pointSystem.addNumPoints(this.userData, points);
+    this.htmlView.updateView_Points(this.userData);
+  }
 
-// View functions
-function updateView_Points(gameData) {
-  updatePoints_html(gameData.totalPoints);
+  removePoints(points) {
+    pointSystem.removeNumPoints(this.userData, points);
+    this.htmlView.updateView_Points(userData);
+  }
+
+  // View functions
+  updateView_Points() {
+    this.htmlView.updatePoints_html(this.userData.totalPoints);
+  }
 }
