@@ -9,17 +9,17 @@ export default class Main {
 
   // Utilities
   pointSystem;
-  userData;
+  userDataHandler;
   htmlView;
   loginHandler;
 
   constructor() {
     this.pointSystem = new PointSystem();
-    this.userData = new UserData();
+    this.userDataHandler = new UserData();
     this.htmlView = new HtmlView();
     this.loginHandler = new LoginHandler();
 
-    this.gameData = this.userData.getUserData_asJSON();
+    this.gameData = this.userDataHandler.getUserData_asJSON();
 
     this.canvas = document.getElementById("gameCanvas");
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
@@ -28,7 +28,7 @@ export default class Main {
 
   dailySignIn() {
     if (!this.loginHandler.checkSignInToday()) {
-      this.pointSystem.addDSIPoints(this.userData, this.gameData);
+      this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
     }
     this.htmlView.updatePoints_html(this.gameData.totalPoints);
     this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
@@ -73,17 +73,19 @@ export default class Main {
 
   // point functions
   addPoints(points) {
-    pointSystem.addNumPoints(this.userData, points);
-    this.htmlView.updateView_Points(this.userData);
+    this.pointSystem.addNumPoints(this.gameData, points);
+    this.userDataHandler.saveUserData(this.gameData);
+    this.htmlView.updatePoints_html(this.gameData.totalPoints);
   }
 
   removePoints(points) {
-    pointSystem.removeNumPoints(this.userData, points);
-    this.htmlView.updateView_Points(userData);
+    this.pointSystem.removeNumPoints(this.gameData, points);
+    this.userDataHandler.saveUserData(this.gameData);
+    this.htmlView.updatePoints_html(this.gameData.totalPoints);
   }
 
   // View functions
   updateView_Points() {
-    this.htmlView.updatePoints_html(this.userData.totalPoints);
+    this.htmlView.updatePoints_html(this.gameData.totalPoints);
   }
 }

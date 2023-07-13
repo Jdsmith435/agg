@@ -8,11 +8,11 @@ export default class PointSystem {
 
   addNumPoints(userData, pointsToAdd) {
     userData.totalPoints += pointsToAdd;
-    saveUserData(userData);
+    return userData;
   }
 
   removeNumPoints(userData, pointsToRemove) {
     userData.totalPoints -= pointsToRemove;
-    saveUserData(userData);
+    return userData;
   }
 }
