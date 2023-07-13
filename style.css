@@ -80,7 +80,7 @@ main {
 }
 
 /* Style the button that is used to open and close the collapsible content */
-.collapsibleButtonList {
+#collapsibleButtonList {
   background-color: #eee;
   color: #444;
   cursor: pointer;

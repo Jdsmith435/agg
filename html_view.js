@@ -1,9 +1,8 @@
 export default class HtmlView {
-  constrcutor() {
-    coll = document.getElementsByClassName("collapsibleButtonList");
-    i;
+  constructor() {
+    var coll = document.getElementById("collapsibleButtonList");
 
-    this.coll[0].addEventListener("click", function () {
+    coll.addEventListener("click", function () {
       this.classList.toggle("active");
       var content = this.nextElementSibling;
       if (content.style.display === "block") {
@@ -14,12 +13,12 @@ export default class HtmlView {
     });
   }
 
-  static updatePoints_html(points) {
+  updatePoints_html(points) {
     document.getElementById("statusBarTextPoints").innerHTML =
       "Points: " + points;
   }
 
-  static displayLogInData(userData) {
+  displayLogInData(userData) {
     document.getElementById("statusBarTextStreak").innerHTML =
       "Streak: " + userData.streak;
   }

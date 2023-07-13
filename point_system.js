@@ -1,10 +1,9 @@
 export default class PointSystem {
   dsiPoints = 50; // points for daily sign in
 
-  addDSIPoints(userData) {
-    dailySignIn();
-    userData.totalPoints += dsiPoints;
-    saveUserData(userData);
+  addDSIPoints(userDataObj, userData) {
+    userData.totalPoints += this.dsiPoints;
+    userDataObj.saveUserData(userData);
   }
 
   addNumPoints(userData, pointsToAdd) {
