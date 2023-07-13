@@ -29,6 +29,9 @@ export default class Main {
   dailySignIn() {
     if (!this.loginHandler.checkSignInToday()) {
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
+      this.loginHandler.recordDailySignInData(
+        this.loginHandler.getLogInData_asJSON()
+      ); // update the date data
     }
     this.htmlView.updatePoints_html(this.gameData.totalPoints);
     this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());

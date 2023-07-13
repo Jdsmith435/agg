@@ -30,8 +30,7 @@ export default class LoginHandler {
   }
 
   isItMoreThanADay(date) {
-    const totalDays = new Date().getTime() - new Date(date).getTime();
-    return totalDays > 1;
+    return new Date().getTime() - new Date(date).getTime() > 1;
   }
 
   // Store DSI records
@@ -47,7 +46,7 @@ export default class LoginHandler {
 
   recordDailySignInData(dsiData_asJSON) {
     dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
-    if (isItMoreThanADay(dsiData_asJSON.lastSignIn)) {
+    if (this.isItMoreThanADay(dsiData_asJSON.lastSignIn)) {
       dsiData_asJSON.streak = 0;
     }
     dsiData_asJSON.streak++;
@@ -55,7 +54,6 @@ export default class LoginHandler {
   }
 
   getLogInData_asJSON() {
-    console.log("getting data");
     return JSON.parse(localStorage.getItem("DSI"));
   }
 }
