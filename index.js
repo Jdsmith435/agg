@@ -28,15 +28,13 @@ export default class Main {
 
   dailySignIn() {
     if (
-      !this.loginHandler.checkSignInToday(
-        this.loginHandler.getLogInData_asJSON()
-      )
+      !this.loginHandler.checkSignInToday(this.loginHandler.getLogInData_asJSON()) // if false, record sign in and add points
     ) {
+      this.loginHandler.recordDailySignInData(this.loginHandler.getLogInData_asJSON());
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
-      this.loginHandler.recordDailySignInData(
-        this.loginHandler.getLogInData_asJSON()
-      ); // update the date data
     }
+
+    // View handling for streak and points
     this.htmlView.updatePoints_html(this.gameData.totalPoints);
     this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
   }

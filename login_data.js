@@ -1,12 +1,11 @@
 export default class LoginHandler {
   dailySignIn() {
-    const dsiData = localStorage.getItem("DSI");
+    const dsiData = getLogInData_asJSON();
     if (dsiData) {
-      const dsiData_asJSON = JSON.parse(dsiData);
-      recordDailySignInData(dsiData_asJSON);
+      recordDailySignInData(dsiData);
     } else {
       addDSIRecords();
-      recordDailySignInData(JSON.parse(localStorage.getItem("DSI")));
+      recordDailySignInData(getLogInData_asJSON());
     }
   }
 
@@ -22,14 +21,12 @@ export default class LoginHandler {
   isItToday(date) {
     const today = new Date();
     return (
-      today.getDay() == date.getDay() &&
-      today.getMonth().toString() == date.getMonth().toString() &&
-      today.getYear().toString() == date.getYear().toString()
+      today.getDay() == date.getDay() && today.getMonth().toString() == date.getMonth().toString() && today.getYear().toString() == date.getYear().toString()
     );
   }
 
   isItMoreThanADay(date) {
-    return new Date().getTime() - new Date(date).getTime() > 1;
+    return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24)) > 1;
   }
 
   // Store DSI records
@@ -41,7 +38,7 @@ export default class LoginHandler {
   }
 
   recordDailySignInData(dsiData_asJSON) {
-    dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
+    // dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
     if (this.isItMoreThanADay(dsiData_asJSON.lastSignIn)) {
       dsiData_asJSON.streak = 0;
     }
@@ -55,5 +52,9 @@ export default class LoginHandler {
 
   saveLogInData(dsiData_asJSON) {
     localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
+  }
+
+  modifyLogInData() {
+    localStorage.setItem("DSI", JSON.stringify({ lastSignIn: "7/12/23", streak: 10 }));
   }
 }
