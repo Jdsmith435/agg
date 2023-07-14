@@ -10,10 +10,9 @@ export default class LoginHandler {
     }
   }
 
-  checkSignInToday() {
-    const dsiData = localStorage.getItem("DSI");
-    if (dsiData) {
-      const dateOfLastSignIn = new Date(JSON.parse(dsiData).lastSignIn);
+  checkSignInToday(loginData) {
+    if (loginData) {
+      const dateOfLastSignIn = new Date(loginData.lastSignIn);
       return this.isItToday(dateOfLastSignIn);
     }
     return false;
@@ -35,13 +34,10 @@ export default class LoginHandler {
 
   // Store DSI records
   addDSIRecords() {
-    localStorage.setItem(
-      "DSI",
-      JSON.stringify({
-        lastSignIn: new Date().toLocaleDateString(),
-        streak: 0,
-      })
-    );
+    this.saveLogInData({
+      lastSignIn: new Date().toLocaleDateString(),
+      streak: 0,
+    });
   }
 
   recordDailySignInData(dsiData_asJSON) {
@@ -50,10 +46,14 @@ export default class LoginHandler {
       dsiData_asJSON.streak = 0;
     }
     dsiData_asJSON.streak++;
-    localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
+    this.saveLogInData(dsiData_asJSON);
   }
 
   getLogInData_asJSON() {
     return JSON.parse(localStorage.getItem("DSI"));
+  }
+
+  saveLogInData(dsiData_asJSON) {
+    localStorage.setItem("DSI", JSON.stringify(dsiData_asJSON));
   }
 }
