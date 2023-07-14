@@ -43,6 +43,7 @@ export default class LoginHandler {
       dsiData_asJSON.streak = 0;
     }
     dsiData_asJSON.streak++;
+    dsiData_asJSON.lastSignIn = new Date().toLocaleDateString();
     this.saveLogInData(dsiData_asJSON);
   }
 
