@@ -8,17 +8,11 @@
 html {
   font-size: 16px;
   height: 100%;
-  background-color: blue;
 }
 
 body {
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(252, 243, 228, 1) 0%,
-    rgba(235, 235, 227, 1) 90%,
-    rgba(221, 168, 152, 1) 100%
-  );
+  background: linear-gradient(180deg, rgba(252, 243, 228, 1) 0%, rgba(235, 235, 227, 1) 90%, rgba(221, 168, 152, 1) 100%);
   margin: 0px;
 }
 
@@ -27,6 +21,7 @@ main {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding-top: 70px;
 }
 
 #informationContainer {
