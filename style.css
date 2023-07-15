@@ -55,7 +55,7 @@ main {
 }
 
 #gameCanvas {
-  background-color: rgb(150, 150, 150);
+  background-color: #dddddd;
   margin: 5px;
   width: calc(100% - 2px);
   height: calc(100% - 2px);

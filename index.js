@@ -16,7 +16,7 @@ export default class Main {
 
   // Animation constants
   yPos = 50;
-  xPos = 50;
+  xPos = 0;
 
   constructor() {
     this.pointSystem = new PointSystem();
@@ -48,18 +48,25 @@ export default class Main {
   startAnimation() {
     setInterval(() => {
       this.cloudBackground();
-    }, 10);
+    }, 500);
   }
 
   cloudBackground() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.beginPath();
-    this.ctx.rect(this.xPos, this.yPos, 40, 40);
-    this.ctx.fillStyle = "#FF0000";
+    this.ctx.rect(this.xPos, this.yPos, 30, 30);
+    this.ctx.rect(this.xPos - 30, this.yPos, 30, 30);
+    this.ctx.rect(this.xPos + 30, this.yPos, 30, 30);
+    this.ctx.rect(this.xPos, this.yPos - 30, 30, 30);
+
+    this.ctx.fillStyle = "#699696";
     this.ctx.fill();
     this.ctx.closePath();
     this.ctx.draw;
     this.xPos += 10;
+    if (this.xPos > this.canvas.width + 50) {
+      this.xPos = 0;
+    }
   }
 
   saveGame() {
