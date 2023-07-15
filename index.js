@@ -6,12 +6,17 @@ import LoginHandler from "./login_data.js";
 export default class Main {
   gameData;
   canvas;
+  ctx;
 
   // Utilities
   pointSystem;
   userDataHandler;
   htmlView;
   loginHandler;
+
+  // Animation constants
+  yPos = 50;
+  xPos = 50;
 
   constructor() {
     this.pointSystem = new PointSystem();
@@ -24,6 +29,7 @@ export default class Main {
     this.canvas = document.getElementById("gameCanvas");
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
     this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
+    this.ctx = this.canvas.getContext("2d");
   }
 
   dailySignIn() {
@@ -39,20 +45,21 @@ export default class Main {
     this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
   }
 
+  startAnimation() {
+    setInterval(() => {
+      this.cloudBackground();
+    }, 10);
+  }
+
   cloudBackground() {
-    let yPos = 0;
-    let xPos = 0;
-    while (false) {
-      var ctx = this.canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      ctx.rect(xPos, yPos, 40, 40);
-      ctx.fillStyle = "#FF0000";
-      ctx.fill();
-      ctx.closePath();
-      ctx.draw;
-      xPos++;
-    }
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.beginPath();
+    this.ctx.rect(this.xPos, this.yPos, 40, 40);
+    this.ctx.fillStyle = "#FF0000";
+    this.ctx.fill();
+    this.ctx.closePath();
+    this.ctx.draw;
+    this.xPos += 10;
   }
 
   saveGame() {
