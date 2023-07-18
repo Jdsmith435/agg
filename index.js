@@ -15,11 +15,13 @@ export default class Main {
   loginHandler;
 
   // Animation constants
-  yPos = 50;
-  xPos = 0;
+  xPosSlow = -40;
+  xPosMedium = 0;
+  xPosFast = 40;
 
   // loaded images
-  small_cloud = new Image(30, 10);
+  small_cloud = new Image();
+  big_cloud = new Image();
 
   constructor() {
     this.pointSystem = new PointSystem();
@@ -33,7 +35,9 @@ export default class Main {
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
     this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
     this.ctx = this.canvas.getContext("2d");
+
     this.small_cloud.src = "./small_cloud.svg";
+    this.big_cloud.src = "./big_cloud.svg";
   }
 
   dailySignIn() {
@@ -57,11 +61,16 @@ export default class Main {
 
   cloudBackground() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.drawImage(this.small_cloud, this.xPos, 20, 50, 20);
-    this.ctx.draw;
-    this.xPos += 10;
-    if (this.xPos > this.canvas.width + 50) {
-      this.xPos = 0;
+    this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
+    this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
+    this.xPosSlow += 10;
+    this.xPosFast += 30;
+    if (this.xPosSlow > this.canvas.width + 50) {
+      this.xPosSlow = -40;
+      this.xPosMedium = -40;
+    }
+    if (this.xPosFast > this.canvas.width + 50) {
+      this.xPosFast = -40;
     }
   }
 
