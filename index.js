@@ -18,6 +18,9 @@ export default class Main {
   yPos = 50;
   xPos = 0;
 
+  // loaded images
+  small_cloud = new Image(30, 10);
+
   constructor() {
     this.pointSystem = new PointSystem();
     this.userDataHandler = new UserData();
@@ -30,6 +33,7 @@ export default class Main {
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
     this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
     this.ctx = this.canvas.getContext("2d");
+    this.small_cloud.src = "./small_cloud.svg";
   }
 
   dailySignIn() {
@@ -53,15 +57,7 @@ export default class Main {
 
   cloudBackground() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.beginPath();
-    this.ctx.rect(this.xPos, this.yPos, 30, 30);
-    this.ctx.rect(this.xPos - 30, this.yPos, 30, 30);
-    this.ctx.rect(this.xPos + 30, this.yPos, 30, 30);
-    this.ctx.rect(this.xPos, this.yPos - 30, 30, 30);
-
-    this.ctx.fillStyle = "#699696";
-    this.ctx.fill();
-    this.ctx.closePath();
+    this.ctx.drawImage(this.small_cloud, this.xPos, 20, 50, 20);
     this.ctx.draw;
     this.xPos += 10;
     if (this.xPos > this.canvas.width + 50) {

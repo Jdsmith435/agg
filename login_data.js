@@ -56,6 +56,6 @@ export default class LoginHandler {
   }
 
   modifyLogInData() {
-    localStorage.setItem("DSI", JSON.stringify({ lastSignIn: "7/12/23", streak: 10 }));
+    localStorage.setItem("DSI", JSON.stringify({ lastSignIn: "7/15/23", streak: 10 }));
   }
 }
