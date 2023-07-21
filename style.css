@@ -61,6 +61,46 @@ main {
   height: calc(100% - 2px);
 }
 
+button {
+  outline: 0 !important;
+  cursor: pointer;
+}
+
+button:focus {
+  box-shadow: inset 0 0 !important;
+}
+
+.buttons {
+  border: 6px solid var(--stroke);
+  padding: 8px 3px;
+  background-color: var(--gray);
+  border-radius: 100px;
+  float: right;
+  position: relative;
+  transform: rotate(-20deg);
+  top: 30px;
+}
+.buttons button {
+  background-color: var(--red);
+  border: 6px solid var(--stroke);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  box-shadow: inset 4px 0 rgba(255, 255, 255, 0.7), inset -4px 0 rgba(0, 0, 0, 0.2);
+  margin: 0 5px;
+}
+
+:root {
+  --pink: #fad1d9;
+  --blue: #c5f6ff;
+  --stroke: #522438;
+  --green: #c2e688;
+  --red: #fc6963;
+  --light-brow: #846662;
+  --gray: #9ea1af;
+}
+
 #canvasHolder {
   display: flex;
   flex-direction: column;
