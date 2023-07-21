@@ -23,6 +23,7 @@ export default class Main {
   small_cloud = new Image();
   big_cloud = new Image();
   plateau = new Image();
+  chicken = new Image();
 
   constructor() {
     this.pointSystem = new PointSystem();
@@ -40,6 +41,9 @@ export default class Main {
     this.small_cloud.src = "./small_cloud.svg";
     this.big_cloud.src = "./big_cloud.svg";
     this.plateau.src = "./plateau.svg";
+    this.chicken.src = "./chicken.svg";
+
+    this.startAnimation();
   }
 
   dailySignIn() {
@@ -66,6 +70,7 @@ export default class Main {
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
+    this.ctx.drawImage(this.chicken, this.canvas.width / 2, this.canvas.height - 100, 100, 100);
 
     this.xPosSlow += 10;
     this.xPosFast += 30;
