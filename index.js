@@ -25,6 +25,9 @@ export default class Main {
   plateau = new Image();
   chicken = new Image();
 
+  // chicken
+  chickenPosX;
+
   constructor() {
     this.pointSystem = new PointSystem();
     this.userDataHandler = new UserData();
@@ -43,6 +46,7 @@ export default class Main {
     this.plateau.src = "./plateau.svg";
     this.chicken.src = "./chicken.svg";
 
+    this.chickenPosX = this.canvas.width / 2;
     this.startAnimation();
   }
 
@@ -66,11 +70,12 @@ export default class Main {
   }
 
   cloudBackground() {
+    this.generateChickenPosX();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
-    this.ctx.drawImage(this.chicken, this.canvas.width / 2, this.canvas.height - 100, 100, 100);
+    this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100, 100, 100);
 
     this.xPosSlow += 10;
     this.xPosFast += 30;
@@ -80,6 +85,23 @@ export default class Main {
     }
     if (this.xPosFast > this.canvas.width + 50) {
       this.xPosFast = -40;
+    }
+  }
+
+  generateChickenPosX() {
+    var direction = Math.floor(Math.random() * 10);
+    if (direction == 1) {
+      if (this.chickenPosX + 5 < this.canvas.width) {
+        this.chickenPosX += 5;
+      } else {
+        this.chickenPosX -= 5;
+      }
+    } else {
+      if (this.chickenPosX - 5 > 0) {
+        this.chickenPosX -= 5;
+      } else {
+        this.chickenPosX += 5;
+      }
     }
   }
 

@@ -38,7 +38,7 @@ main {
   font-size: 5em;
   color: #f26a05;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: #522438;
   margin: 0pt;
 }
 
@@ -75,13 +75,15 @@ button:focus {
   padding: 8px 3px;
   background-color: var(--gray);
   border-radius: 100px;
-  float: right;
-  position: relative;
-  transform: rotate(-20deg);
-  top: 30px;
+  display: flex;
+  justify-content: center;
+  /* float: right;
+  position: relative; */
+  /* transform: rotate(-20deg); */
+  /* top: 30px; */
 }
 .buttons button {
-  background-color: var(--red);
+  background-color: var(--wanchaOrange);
   border: 6px solid var(--stroke);
   border-radius: 50%;
   width: 40px;
@@ -96,7 +98,7 @@ button:focus {
   --blue: #c5f6ff;
   --stroke: #522438;
   --green: #c2e688;
-  --red: #fc6963;
+  --wanchaOrange: #f26a05;
   --light-brow: #846662;
   --gray: #9ea1af;
 }
@@ -110,7 +112,7 @@ button:focus {
   background-color: #f26a05;
   width: 90%;
   border-style: solid;
-  border-color: black;
+  border-color: #522438;
   border-width: 2px;
 }
 
