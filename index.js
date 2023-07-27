@@ -18,12 +18,14 @@ export default class Main {
   xPosSlow = -40;
   xPosMedium = 0;
   xPosFast = 40;
+  flipped = false;
 
   // loaded images
   small_cloud = new Image();
   big_cloud = new Image();
   plateau = new Image();
   chicken = new Image();
+  chickenFlipped = new Image();
 
   // chicken
   chickenPosX;
@@ -45,6 +47,7 @@ export default class Main {
     this.big_cloud.src = "./big_cloud.svg";
     this.plateau.src = "./plateau.svg";
     this.chicken.src = "./chicken.svg";
+    this.chickenFlipped.src = "./chicken_flipped.svg";
 
     this.chickenPosX = this.canvas.width / 2;
     this.startAnimation();
@@ -66,7 +69,7 @@ export default class Main {
   startAnimation() {
     setInterval(() => {
       this.cloudBackground();
-    }, 500);
+    }, 700);
   }
 
   cloudBackground() {
@@ -75,10 +78,14 @@ export default class Main {
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
-    this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100, 100, 100);
+    if (this.flipped) {
+      this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100, 100, 100);
+    } else {
+      this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100, 100, 100);
+    }
 
-    this.xPosSlow += 10;
-    this.xPosFast += 30;
+    this.xPosSlow += 5;
+    this.xPosFast += 15;
     if (this.xPosSlow > this.canvas.width + 50) {
       this.xPosSlow = -40;
       this.xPosMedium = -40;
@@ -89,18 +96,23 @@ export default class Main {
   }
 
   generateChickenPosX() {
-    var direction = Math.floor(Math.random() * 10);
+    var direction = Math.floor(Math.random() * 2);
+    console.log(direction);
     if (direction == 1) {
-      if (this.chickenPosX + 5 < this.canvas.width) {
-        this.chickenPosX += 5;
+      if (this.chickenPosX + 10 < this.canvas.width) {
+        this.chickenPosX += 10;
+        this.flipped = false;
       } else {
-        this.chickenPosX -= 5;
+        this.chickenPosX -= 10;
+        this.flipped = true;
       }
     } else {
-      if (this.chickenPosX - 5 > 0) {
-        this.chickenPosX -= 5;
+      if (this.chickenPosX - 10 > 0) {
+        this.chickenPosX -= 10;
+        this.flipped = true;
       } else {
-        this.chickenPosX += 5;
+        this.chickenPosX += 10;
+        this.flipped = false;
       }
     }
   }
