@@ -2,6 +2,7 @@ import PointSystem from "./point_system.js";
 import UserData from "./user_data.js";
 import HtmlView from "./html_view.js";
 import LoginHandler from "./login_data.js";
+import Actions from "./actions.js";
 
 export default class Main {
   gameData;
@@ -13,6 +14,7 @@ export default class Main {
   userDataHandler;
   htmlView;
   loginHandler;
+  action;
 
   // Animation constants
   xPosSlow = -40;
@@ -35,6 +37,7 @@ export default class Main {
     this.userDataHandler = new UserData();
     this.htmlView = new HtmlView();
     this.loginHandler = new LoginHandler();
+    this.action = new Actions();
 
     this.gameData = this.userDataHandler.getUserData_asJSON();
 
@@ -97,7 +100,6 @@ export default class Main {
 
   generateChickenPosX() {
     var direction = Math.floor(Math.random() * 2);
-    console.log(direction);
     if (direction == 1) {
       if (this.chickenPosX + 10 < this.canvas.width) {
         this.chickenPosX += 10;
@@ -154,5 +156,21 @@ export default class Main {
   // View functions
   updateView_Points() {
     this.htmlView.updatePoints_html(this.gameData.totalPoints);
+  }
+
+  actionButton1() {
+    this.action.clean();
+  }
+
+  actionButton2() {
+    this.action.feed();
+  }
+
+  actionButton3() {
+    this.action.train();
+  }
+
+  actionButton4() {
+    console.log("TODO");
   }
 }
