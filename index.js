@@ -28,6 +28,7 @@ export default class Main {
   plateau = new Image();
   chicken = new Image();
   chickenFlipped = new Image();
+  poop = new Image();
 
   // chicken
   chickenPosX;
@@ -51,6 +52,7 @@ export default class Main {
     this.plateau.src = "./plateau.svg";
     this.chicken.src = "./chicken.svg";
     this.chickenFlipped.src = "./chicken_flipped.svg";
+    this.poop.src = "./poop.svg";
 
     this.chickenPosX = this.canvas.width / 2;
     this.startAnimation();
@@ -81,12 +83,20 @@ export default class Main {
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
+    this.ctx.drawImage(this.poop, this.canvas.width * 0.8, this.canvas.height - 50, 70, 50);
+    this.ctx.fillRect(this.canvas.width * 0.8 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 10), 5, 5);
+    this.ctx.fillRect(this.canvas.width * 0.8 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 10), 5, 5);
+
     if (this.flipped) {
       this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100, 100, 100);
     } else {
       this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100, 100, 100);
     }
 
+    this.adjustPositions();
+  }
+
+  adjustPositions() {
     this.xPosSlow += 5;
     this.xPosFast += 15;
     if (this.xPosSlow > this.canvas.width + 50) {
