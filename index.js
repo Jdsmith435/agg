@@ -83,9 +83,9 @@ export default class Main {
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
-    this.ctx.drawImage(this.poop, this.canvas.width * 0.8, this.canvas.height - 50, 70, 50);
-    this.ctx.fillRect(this.canvas.width * 0.8 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 10), 5, 5);
-    this.ctx.fillRect(this.canvas.width * 0.8 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 10), 5, 5);
+    this.ctx.drawImage(this.poop, this.canvas.width * 0.15, this.canvas.height - 50, 70, 50);
+    this.ctx.fillRect(this.canvas.width * 0.15 + 60 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 20), 5, 5);
+    this.ctx.fillRect(this.canvas.width * 0.15 - Math.floor(Math.random() * 10) + 10, this.canvas.height - 50 - Math.floor(Math.random() * 20), 5, 5);
 
     if (this.flipped) {
       this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100, 100, 100);
