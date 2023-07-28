@@ -97,8 +97,8 @@ export default class Main {
   }
 
   adjustPositions() {
-    this.xPosSlow += 5;
-    this.xPosFast += 15;
+    this.xPosSlow += 3;
+    this.xPosFast += 10;
     if (this.xPosSlow > this.canvas.width + 50) {
       this.xPosSlow = -40;
       this.xPosMedium = -40;
