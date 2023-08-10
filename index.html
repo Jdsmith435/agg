@@ -26,10 +26,8 @@
       </div>
       <button type="button" id="collapsibleButtonList" hidden="true">Test Console</button>
       <div class="content">
-        <button onclick="window.main.startAnimation()">PRESS ME</button>
-        <button onclick="saveGame()">Save Game</button>
-        <button onclick="loadGame()">Load Game</button>
         <button onclick="clearGameStorage()">clear Game</button>
+        <!-- TODO DELETE THIS  -->
         <button onclick="window.main.addPoints(50)">Add 50</button>
         <button onclick="window.main.removePoints(50)">take 50</button>
         <button onclick="print_userObject()">Print player data</button>
@@ -38,6 +36,8 @@
       <div id="canvasHolder">
         <canvas id="gameCanvas"></canvas>
         <div class="buttons">
+          <button onclick="window.main.clearGameStorage()">clear Game</button>
+
           <button class="button-a" onclick="window.main.actionButton1()"></button>
           <button class="button-a" onclick="window.main.actionButton2()"></button>
           <button class="button-a" onclick="window.main.actionButton3()"></button>

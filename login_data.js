@@ -31,9 +31,10 @@ export default class LoginHandler {
 
   // Store DSI records
   addDSIRecords() {
+    const currentDate = new Date();
     this.saveLogInData({
-      lastSignIn: new Date().toLocaleDateString(),
-      streak: 1,
+      lastSignIn: currentDate.setDate(currentDate.getDate() - 1),
+      streak: 0,
     });
   }
 

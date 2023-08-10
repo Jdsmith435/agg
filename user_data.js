@@ -14,7 +14,7 @@ export default class UserData {
     }
   }
 
-  addPoop(gameData) {
-    gameData.hasPoop = true;
+  togglePoop(HasPoop) {
+    return !HasPoop;
   }
 }
