@@ -1,5 +1,7 @@
 export default class Actions {
-  clean() {}
+  clean(hasPoop) {
+    return !hasPoop;
+  }
 
   feed() {}
 

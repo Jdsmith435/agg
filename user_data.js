@@ -8,7 +8,7 @@ export default class UserData {
     if (userData) {
       return JSON.parse(userData);
     } else {
-      return { totalPoints: 0, petName: "TODO", petAge: "TODO" }; // probably need creature data here too
+      return { totalPoints: 0, petName: "TODO", petAge: "TODO", hasPoop: false }; // probably need creature data here too
     }
   }
 }

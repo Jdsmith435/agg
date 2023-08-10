@@ -48,7 +48,12 @@ export default class LoginHandler {
   }
 
   getLogInData_asJSON() {
-    return JSON.parse(localStorage.getItem("DSI"));
+    let logginData = JSON.parse(localStorage.getItem("DSI"));
+    if (logginData != null) {
+      return logginData;
+    }
+    this.addDSIRecords();
+    return this.getLogInData_asJSON();
   }
 
   saveLogInData(dsiData_asJSON) {

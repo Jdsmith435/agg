@@ -6,6 +6,7 @@ import Actions from "./actions.js";
 
 export default class Main {
   gameData;
+  logginData;
   canvas;
   ctx;
 
@@ -41,7 +42,7 @@ export default class Main {
     this.action = new Actions();
 
     this.gameData = this.userDataHandler.getUserData_asJSON();
-
+    this.logginData = this.loginHandler.getLogInData_asJSON();
     this.canvas = document.getElementById("gameCanvas");
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
     this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
@@ -83,9 +84,13 @@ export default class Main {
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
-    this.ctx.drawImage(this.poop, this.canvas.width * 0.15, this.canvas.height - 50, 70, 50);
-    this.ctx.fillRect(this.canvas.width * 0.15 + 60 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 20), 5, 5);
-    this.ctx.fillRect(this.canvas.width * 0.15 - Math.floor(Math.random() * 10) + 10, this.canvas.height - 50 - Math.floor(Math.random() * 20), 5, 5);
+
+    // Poop
+    if (this.gameData.hasPoop) {
+      this.ctx.drawImage(this.poop, this.canvas.width * 0.15, this.canvas.height - 50, 70, 50);
+      this.ctx.fillRect(this.canvas.width * 0.15 + 60 + Math.floor(Math.random() * 10), this.canvas.height - 50 + Math.floor(Math.random() * 20), 5, 5);
+      this.ctx.fillRect(this.canvas.width * 0.15 - Math.floor(Math.random() * 10) + 10, this.canvas.height - 50 - Math.floor(Math.random() * 20), 5, 5);
+    }
 
     if (this.flipped) {
       this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100, 100, 100);
@@ -169,7 +174,7 @@ export default class Main {
   }
 
   actionButton1() {
-    this.action.clean();
+    this.gameData.hasPoop = this.action.clean(this.gameData.hasPoop);
   }
 
   actionButton2() {
