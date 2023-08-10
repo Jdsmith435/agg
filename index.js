@@ -81,6 +81,7 @@ export default class Main {
       if (this.userDataHandler.petAge != Ages[1]) this.gameData.hasPoop = this.userDataHandler.togglePoop(this.gameData.hasPoop);
       this.gameData.hungry = this.generateHungryStat(this.gameData.hungry);
       this.gameData.happy = this.generateHappyStat(this.gameData.happy, this.gameData.hungry);
+      this.userDataHandler.saveUserData(this.gameData);
     }
 
     // View handling for streak and points
@@ -223,6 +224,7 @@ export default class Main {
     this.gameData.hasPoop = this.action.clean(this.gameData.hasPoop);
     this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
     this.userDataHandler.saveUserData(this.gameData);
+    this.htmlView.updatePoints_html(this.gameData.totalPoints);
     this.poonCleanUp = 5;
   }
 
@@ -234,6 +236,7 @@ export default class Main {
       this.foodOnGround = 4;
       this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
       this.userDataHandler.saveUserData(this.gameData);
+      this.htmlView.updatePoints_html(this.gameData.totalPoints);
       this.foodCounterAnimation();
     }
   }
@@ -245,6 +248,7 @@ export default class Main {
       this.chickenJump = 50;
       this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
       this.userDataHandler.saveUserData(this.gameData);
+      this.htmlView.updatePoints_html(this.gameData.totalPoints);
     }
   }
 
