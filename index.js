@@ -55,10 +55,6 @@ export default class Main {
     this.gameData = this.userDataHandler.getUserData_asJSON();
     this.logginData = this.loginHandler.getLogInData_asJSON();
 
-    // set display
-    this.htmlView.updateHunger_html(this.gameData.hungry);
-    this.htmlView.updateHappy_html(this.gameData.happy);
-
     this.canvas = document.getElementById("gameCanvas");
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
     this.canvas.setAttribute("height", window.innerHeight * 0.4 + "px");
@@ -83,11 +79,16 @@ export default class Main {
       this.loginHandler.recordDailySignInData(this.loginHandler.getLogInData_asJSON());
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
       if (this.userDataHandler.petAge != Ages[1]) this.gameData.hasPoop = this.userDataHandler.togglePoop(this.gameData.hasPoop);
+      this.gameData.hungry = this.generateHungryStat(this.gameData.hungry);
+      this.gameData.happy = this.generateHappyStat(this.gameData.happy, this.gameData.hungry);
     }
 
     // View handling for streak and points
     this.htmlView.updatePoints_html(this.gameData.totalPoints);
     this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
+    // set display
+    this.htmlView.updateHunger_html(this.gameData.hungry);
+    this.htmlView.updateHappy_html(this.gameData.happy);
   }
 
   startAnimation() {
@@ -110,7 +111,7 @@ export default class Main {
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
 
-    if (this.chickenDestinationCount < 0) {
+    if (this.chickenDestinationCount < 0 && this.foodOnGround <= 0) {
       this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100 - this.chickenJump, 100, 100);
     } else {
       this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100 - this.chickenJump, 100, 100);
@@ -245,5 +246,24 @@ export default class Main {
       this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
       this.userDataHandler.saveUserData(this.gameData);
     }
+  }
+
+  generateHungryStat(hungryStat) {
+    switch (hungryStat) {
+      case 5:
+      case 4:
+      case 3:
+        return (hungryStat -= 2);
+      case 2:
+        return (hungryStat -= 1);
+      default:
+        return -1;
+    }
+  }
+
+  generateHappyStat(happyStat, hungryStat) {
+    let scale = 0;
+    if (hungryStat < 3) scale = 1;
+    return (happyStat -= 2 - scale);
   }
 }
