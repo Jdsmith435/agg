@@ -158,8 +158,10 @@ export default class Main {
   }
 
   generateChickenPosX() {
-    if (this.chickenJump > 0) this.chickenJump -= 10;
+    if (this.chickenJump > 0) this.chickenJump -= 10; // Jump logic
+
     if (Math.abs(this.chickenDestinationCount) > 10) {
+      // Moving logic
       if (this.chickenDestinationCount > 0) {
         this.chickenPosX += 10;
         this.chickenDestinationCount -= 10;
@@ -168,14 +170,20 @@ export default class Main {
         this.chickenDestinationCount += 10;
       }
     } else {
-      var direction;
-      var destination = this.canvas.width + 1;
-      while (destination + this.chickenPosX > this.canvas.width || this.chickenPosX - destination < 0) {
-        direction = Math.floor(Math.random() * 2);
-        destination = Math.floor(Math.random() * 70);
+      // set destination logic
+      var direction = (direction = Math.floor(Math.random() * 2));
+      var destination = (destination = Math.floor(Math.random() * 70));
+      if (direction == 1) {
+        if (destination + this.chickenPosX > this.canvas.width - 100) {
+          destination *= -1;
+        }
+      } else {
+        if (this.chickenPosX - destination > 0) {
+          destination *= -1;
+        }
       }
 
-      this.chickenDestinationCount = direction == 1 ? destination : destination * -1;
+      this.chickenDestinationCount = destination;
     }
   }
 
