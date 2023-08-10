@@ -1,3 +1,5 @@
+import age from "./age.js";
+
 export default class UserData {
   saveUserData(userData) {
     localStorage.setItem("userData", JSON.stringify(userData));
@@ -8,7 +10,11 @@ export default class UserData {
     if (userData) {
       return JSON.parse(userData);
     } else {
-      return { totalPoints: 0, petName: "TODO", petAge: "TODO", hasPoop: false }; // probably need creature data here too
+      return { totalPoints: 0, petName: "TODO", petAge: age[1], hasPoop: false };
     }
+  }
+
+  addPoop(gameData) {
+    gameData.hasPoop = true;
   }
 }

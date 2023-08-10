@@ -33,7 +33,7 @@ export default class LoginHandler {
   addDSIRecords() {
     this.saveLogInData({
       lastSignIn: new Date().toLocaleDateString(),
-      streak: 0,
+      streak: 1,
     });
   }
 

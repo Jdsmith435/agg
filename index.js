@@ -65,6 +65,7 @@ export default class Main {
     ) {
       this.loginHandler.recordDailySignInData(this.loginHandler.getLogInData_asJSON());
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
+      this.userDataHandler.AddPoop(this.gameData);
     }
 
     // View handling for streak and points
