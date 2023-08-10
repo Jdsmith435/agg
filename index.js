@@ -66,7 +66,7 @@ export default class Main {
     ) {
       this.loginHandler.recordDailySignInData(this.loginHandler.getLogInData_asJSON());
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
-      if (this.userDataHandler.petAge != Ages[1]) this.userDataHandler.hasPoop = this.userDataHandler.togglePoop(this.gameData.hasPoop);
+      if (this.userDataHandler.petAge != Ages[1]) this.gameData.hasPoop = this.userDataHandler.togglePoop(this.gameData.hasPoop);
     }
 
     // View handling for streak and points
@@ -136,17 +136,9 @@ export default class Main {
     }
   }
 
-  saveGame() {
-    localStorage.setItem("myCat", "Tom");
-  }
-
-  loadGame() {
-    const cat = localStorage.getItem("myCat");
-    console.log(cat);
-  }
-
   clearGameStorage() {
-    localStorage.clear();
+    // localStorage.clear();
+    this.loginHandler.modifyLogInData();
   }
 
   print_userObject() {
