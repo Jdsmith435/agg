@@ -32,8 +32,18 @@ export default class Main {
   chickenFlipped = new Image();
   poop = new Image();
 
-  // chicken
+  // positions
   chickenPosX;
+  foodPosition;
+  chickenDestinationCount;
+
+  // canvas modifiers
+  foodOnGround = 0;
+  poonCleanUp = 0;
+  chickenJump = 0;
+
+  // interval ids
+  foodAnimationInterval;
 
   constructor() {
     this.pointSystem = new PointSystem();
@@ -62,6 +72,7 @@ export default class Main {
     this.poop.src = "./poop.svg";
 
     this.chickenPosX = this.canvas.width / 2;
+    this.foodPosition = this.canvas.width * 0.65;
     this.startAnimation();
   }
 
@@ -82,15 +93,28 @@ export default class Main {
   startAnimation() {
     setInterval(() => {
       this.cloudBackground();
-    }, 700);
+    }, 300);
+  }
+
+  foodCounterAnimation() {
+    this.foodAnimationInterval = setInterval(() => {
+      this.foodOnGround--;
+    }, 1500);
   }
 
   cloudBackground() {
+    this.ctx.fillStyle = "black";
     this.generateChickenPosX();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
-    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.plateau.width + 130, this.plateau.height + 20);
+    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
+
+    if (this.chickenDestinationCount < 0) {
+      this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100 - this.chickenJump, 100, 100);
+    } else {
+      this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100 - this.chickenJump, 100, 100);
+    }
 
     // Poop
     if (this.gameData.hasPoop) {
@@ -99,10 +123,23 @@ export default class Main {
       this.ctx.fillRect(this.canvas.width * 0.15 - Math.floor(Math.random() * 10) + 10, this.canvas.height - 50 - Math.floor(Math.random() * 20), 5, 5);
     }
 
-    if (this.flipped) {
-      this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100, 100, 100);
-    } else {
-      this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100, 100, 100);
+    // food
+    if (this.foodOnGround > 0) {
+      let lastPostition;
+      this.ctx.fillRect(this.foodPosition, this.canvas.height - 15, 35, 15);
+      this.ctx.fillStyle = "gray";
+      if (this.foodOnGround > 1) {
+        lastPostition = (35 - 25) / 2;
+        this.ctx.fillRect(this.foodPosition + lastPostition, this.canvas.height - 20, 25, 5);
+        if (this.foodOnGround > 2) {
+          lastPostition += (25 - 17) / 2;
+          this.ctx.fillRect(this.foodPosition + lastPostition, this.canvas.height - 25, 17, 5);
+          if (this.foodOnGround > 3) {
+            lastPostition += (17 - 10) / 2;
+            this.ctx.fillRect(this.foodPosition + lastPostition, this.canvas.height - 30, 10, 5);
+          }
+        }
+      }
     }
 
     this.adjustPositions();
@@ -121,23 +158,24 @@ export default class Main {
   }
 
   generateChickenPosX() {
-    var direction = Math.floor(Math.random() * 2);
-    if (direction == 1) {
-      if (this.chickenPosX + 10 < this.canvas.width) {
+    if (this.chickenJump > 0) this.chickenJump -= 10;
+    if (Math.abs(this.chickenDestinationCount) > 10) {
+      if (this.chickenDestinationCount > 0) {
         this.chickenPosX += 10;
-        this.flipped = false;
+        this.chickenDestinationCount -= 10;
       } else {
         this.chickenPosX -= 10;
-        this.flipped = true;
+        this.chickenDestinationCount += 10;
       }
     } else {
-      if (this.chickenPosX - 10 > 0) {
-        this.chickenPosX -= 10;
-        this.flipped = true;
-      } else {
-        this.chickenPosX += 10;
-        this.flipped = false;
+      var direction;
+      var destination = this.canvas.width + 1;
+      while (destination + this.chickenPosX > this.canvas.width || this.chickenPosX - destination < 0) {
+        direction = Math.floor(Math.random() * 2);
+        destination = Math.floor(Math.random() * 70);
       }
+
+      this.chickenDestinationCount = direction == 1 ? destination : destination * -1;
     }
   }
 
@@ -174,18 +212,30 @@ export default class Main {
 
   actionButton1() {
     this.gameData.hasPoop = this.action.clean(this.gameData.hasPoop);
+    this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
+    this.userDataHandler.saveUserData(this.gameData);
+    this.poonCleanUp = 5;
   }
 
   actionButton2() {
-    this.gameData.hungry = this.action.feed(this.gameData.hungry);
-    this.htmlView.updateHunger_html(this.gameData.hungry);
+    if (this.foodOnGround <= 0 && this.gameData.hungry < 5) {
+      clearInterval(this.foodAnimationInterval);
+      this.gameData.hungry = this.action.feed(this.gameData.hungry);
+      this.htmlView.updateHunger_html(this.gameData.hungry);
+      this.foodOnGround = 4;
+      this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
+      this.userDataHandler.saveUserData(this.gameData);
+      this.foodCounterAnimation();
+    }
   }
 
   actionButton3() {
-    this.action.train();
-  }
-
-  actionButton4() {
-    console.log("TODO");
+    if (this.chickenJump <= 0 && this.gameData.happy < 5) {
+      this.gameData.happy = this.action.train(this.gameData.happy);
+      this.htmlView.updateHappy_html(this.gameData.happy);
+      this.chickenJump = 50;
+      this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
+      this.userDataHandler.saveUserData(this.gameData);
+    }
   }
 }

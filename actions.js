@@ -1,5 +1,5 @@
 export default class Actions {
-  clean(hasPoop) {
+  clean() {
     return false;
   }
 
@@ -7,5 +7,7 @@ export default class Actions {
     return hungry < 5 ? ++hungry : (hungry = 5);
   }
 
-  train() {}
+  train(happy) {
+    return happy < 5 ? ++happy : (happy = 5);
+  }
 }
