@@ -47,11 +47,24 @@ main {
   color: #3d3d3d;
 }
 
+#statusBarHappy,
+#statusBarHungry {
+  color: #f26a05;
+}
+
 #statsBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
+
+#statsTextBar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
+  width: 90%;
 }
 
 #gameCanvas {

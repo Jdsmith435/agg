@@ -3,7 +3,9 @@ export default class Actions {
     return false;
   }
 
-  feed() {}
+  feed(hungry) {
+    return hungry < 5 ? ++hungry : (hungry = 5);
+  }
 
   train() {}
 }

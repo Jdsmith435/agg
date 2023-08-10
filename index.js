@@ -44,9 +44,14 @@ export default class Main {
 
     this.gameData = this.userDataHandler.getUserData_asJSON();
     this.logginData = this.loginHandler.getLogInData_asJSON();
+
+    // set display
+    this.htmlView.updateHunger_html(this.gameData.hungry);
+    this.htmlView.updateHappy_html(this.gameData.happy);
+
     this.canvas = document.getElementById("gameCanvas");
     this.canvas.setAttribute("width", window.innerWidth - 15 + "px");
-    this.canvas.setAttribute("height", window.innerHeight * 0.6 + "px");
+    this.canvas.setAttribute("height", window.innerHeight * 0.4 + "px");
     this.ctx = this.canvas.getContext("2d");
 
     this.small_cloud.src = "./small_cloud.svg";
@@ -137,8 +142,8 @@ export default class Main {
   }
 
   clearGameStorage() {
-    // localStorage.clear();
-    this.loginHandler.modifyLogInData();
+    localStorage.clear();
+    // this.loginHandler.modifyLogInData();
   }
 
   print_userObject() {
@@ -172,7 +177,8 @@ export default class Main {
   }
 
   actionButton2() {
-    this.action.feed();
+    this.gameData.hungry = this.action.feed(this.gameData.hungry);
+    this.htmlView.updateHunger_html(this.gameData.hungry);
   }
 
   actionButton3() {

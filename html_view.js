@@ -14,12 +14,36 @@ export default class HtmlView {
   }
 
   updatePoints_html(points) {
-    document.getElementById("statusBarTextPoints").innerHTML =
-      "Points: " + points;
+    document.getElementById("statusBarTextPoints").innerHTML = "Points: " + points;
   }
 
   displayLogInData(userData) {
-    document.getElementById("statusBarTextStreak").innerHTML =
-      "Streak: " + userData.streak;
+    document.getElementById("statusBarTextStreak").innerHTML = "Streak: " + userData.streak;
+  }
+
+  updateHunger_html(hungerLevel) {
+    let hearts = "";
+    for (let i = 0; i < hungerLevel; i++) {
+      hearts += "\u2665";
+    }
+    for (let i = 0; i < 5 - hungerLevel; i++) {
+      hearts += "\u2661";
+    }
+    document.getElementById("statusBarHungry").innerHTML = "Chock-full: " + hearts;
+  }
+
+  updateHappy_html(happyLevel) {
+    let hearts = "";
+    for (let i = 0; i < happyLevel; i++) {
+      hearts += "\u2665";
+    }
+    for (let i = 0; i < 5 - happyLevel; i++) {
+      hearts += "\u2661";
+    }
+    document.getElementById("statusBarHappy").innerHTML = "Tickled Pink: " + hearts;
+  }
+
+  displayLogInData(userData) {
+    document.getElementById("statusBarTextStreak").innerHTML = "Streak: " + userData.streak;
   }
 }
