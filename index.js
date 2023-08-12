@@ -101,7 +101,8 @@ export default class Main {
   foodCounterAnimation() {
     this.foodAnimationInterval = setInterval(() => {
       this.foodOnGround--;
-    }, 1500);
+      console.log("HERE");
+    }, 700);
   }
 
   cloudBackground() {
@@ -112,10 +113,17 @@ export default class Main {
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
 
-    if (this.chickenDestinationCount < 0 && this.foodOnGround <= 0) {
-      this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - 100 - this.chickenJump, 100, 100);
+    let chickenHeight;
+    if (this.foodOnGround > 0) this.chickenPosX = this.foodPosition - 90;
+    if (this.foodOnGround % 2 == 0) {
+      chickenHeight = 100;
     } else {
-      this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - 100 - this.chickenJump, 100, 100);
+      chickenHeight = 90;
+    }
+    if (this.chickenDestinationCount < 0 && this.foodOnGround <= 0) {
+      this.ctx.drawImage(this.chickenFlipped, this.chickenPosX, this.canvas.height - chickenHeight - this.chickenJump, 100, chickenHeight);
+    } else {
+      this.ctx.drawImage(this.chicken, this.chickenPosX, this.canvas.height - chickenHeight - this.chickenJump, 100, chickenHeight);
     }
 
     // Poop
@@ -130,18 +138,28 @@ export default class Main {
       let lastPostition;
       this.ctx.fillRect(this.foodPosition, this.canvas.height - 15, 35, 15);
       this.ctx.fillStyle = "gray";
+      if (this.foodOnGround % 2 == 1) {
+        this.ctx.fillRect(this.foodPosition - 5, this.canvas.height - 20, 5, 5);
+        this.ctx.fillRect(this.foodPosition + 35, this.canvas.height - 20, 5, 5);
+      }
       if (this.foodOnGround > 1) {
         lastPostition = (35 - 25) / 2;
         this.ctx.fillRect(this.foodPosition + lastPostition, this.canvas.height - 20, 25, 5);
         if (this.foodOnGround > 2) {
           lastPostition += (25 - 17) / 2;
           this.ctx.fillRect(this.foodPosition + lastPostition, this.canvas.height - 25, 17, 5);
+          if (this.foodOnGround % 2 == 1) {
+            this.ctx.fillRect(this.foodPosition + lastPostition - 5, this.canvas.height - 30, 5, 5);
+            this.ctx.fillRect(this.foodPosition + lastPostition + 17, this.canvas.height - 30, 5, 5);
+          }
           if (this.foodOnGround > 3) {
             lastPostition += (17 - 10) / 2;
             this.ctx.fillRect(this.foodPosition + lastPostition, this.canvas.height - 30, 10, 5);
           }
         }
       }
+    } else {
+      clearInterval(this.foodAnimationInterval);
     }
 
     this.adjustPositions();
@@ -194,14 +212,6 @@ export default class Main {
     // this.loginHandler.modifyLogInData();
   }
 
-  print_userObject() {
-    console.log(this.getUserData_asJSON());
-  }
-
-  print_loginData() {
-    console.log(this.getLogInData_asJSON());
-  }
-
   // point functions
   addPoints(points) {
     this.pointSystem.addNumPoints(this.gameData, points);
@@ -230,7 +240,6 @@ export default class Main {
 
   actionButton2() {
     if (this.foodOnGround <= 0 && this.gameData.hungry < 5) {
-      clearInterval(this.foodAnimationInterval);
       this.gameData.hungry = this.action.feed(this.gameData.hungry);
       this.htmlView.updateHunger_html(this.gameData.hungry);
       this.foodOnGround = 4;
