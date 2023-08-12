@@ -90,6 +90,13 @@ export default class Main {
     // set display
     this.htmlView.updateHunger_html(this.gameData.hungry);
     this.htmlView.updateHappy_html(this.gameData.happy);
+
+    if (this.gameData.hungry == 0 && this.gameData.happy == 0) {
+      this.gameData.ranAway == true;
+    }
+
+    if (this.gameData.ranAway == true) {
+    }
   }
 
   startAnimation() {
@@ -101,7 +108,6 @@ export default class Main {
   foodCounterAnimation() {
     this.foodAnimationInterval = setInterval(() => {
       this.foodOnGround--;
-      console.log("HERE");
     }, 700);
   }
 

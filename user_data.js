@@ -10,7 +10,7 @@ export default class UserData {
     if (userData) {
       return JSON.parse(userData);
     } else {
-      return { totalPoints: 0, petName: "TODO", petAge: age[1], hasPoop: false, hungry: 4, happy: 4 };
+      return { totalPoints: 0, ranAway: false, petAge: age[1], hasPoop: false, hungry: 4, happy: 4 };
     }
   }
 

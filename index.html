@@ -17,24 +17,28 @@
   </head>
   <body>
     <main>
-      <div id="informationContainer">
-        <p id="titleText">Wancha</p>
-        <div id="statsTextBar">
-          <h2 id="statusBarTextPoints">Points:</h2>
-          <h2 id="statusBarTextStreak">Streak:</h2>
+      <div id="RanAwayFilter">
+        <p>Woah There Partner!</p>
+        <p>Looks like your chicken ran away!</p>
+        <div id="informationContainer">
+          <p id="titleText">Wancha</p>
+          <div id="statsTextBar">
+            <h2 id="statusBarTextPoints">Points:</h2>
+            <h2 id="statusBarTextStreak">Streak:</h2>
+          </div>
+          <div id="statsBar">
+            <h2 id="statusBarHungry"></h2>
+            <h2 id="statusBarHappy"></h2>
+          </div>
         </div>
-        <div id="statsBar">
-          <h2 id="statusBarHungry"></h2>
-          <h2 id="statusBarHappy"></h2>
-        </div>
-      </div>
-      <button type="button" id="collapsibleButtonList" hidden="true">Test Console</button>
-      <div id="canvasHolder">
-        <canvas id="gameCanvas"></canvas>
-        <div class="buttons">
-          <button class="button-a" onclick="window.main.actionButton1()"></button>
-          <button class="button-a" onclick="window.main.actionButton2()"></button>
-          <button class="button-a" onclick="window.main.actionButton3()"></button>
+        <button type="button" id="collapsibleButtonList" hidden="true">Test Console</button>
+        <div id="canvasHolder">
+          <canvas id="gameCanvas"></canvas>
+          <div class="buttons">
+            <button class="button-a" onclick="window.main.actionButton1()"></button>
+            <button class="button-a" onclick="window.main.actionButton2()"></button>
+            <button class="button-a" onclick="window.main.actionButton3()"></button>
+          </div>
         </div>
       </div>
     </main>

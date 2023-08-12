@@ -33,6 +33,18 @@ main {
   padding: 15px;
 }
 
+#RanAwayFilter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  opacity: 0.2;
+  background-color: black;
+}
+
 #titleText {
   font-family: "Malboro";
   font-size: 5em;
