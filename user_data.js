@@ -17,4 +17,12 @@ export default class UserData {
   togglePoop(HasPoop) {
     return !HasPoop;
   }
+
+  modifyGameData() {
+    localStorage.setItem("userData", JSON.stringify({ totalPoints: 750, ranAway: true, petAge: age[0], hasPoop: true, hungry: 0, happy: 0 }));
+  }
+
+  resetGameData() {
+    localStorage.setItem("userData", JSON.stringify({ totalPoints: 0, ranAway: false, petAge: age[0], hasPoop: false, hungry: 1, happy: 1 }));
+  }
 }

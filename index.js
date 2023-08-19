@@ -69,7 +69,12 @@ export default class Main {
 
     this.chickenPosX = this.canvas.width / 2;
     this.foodPosition = this.canvas.width * 0.65;
-    this.startAnimation();
+
+    if (this.gameData.ranAway) {
+      this.canvasDisplayGameOver();
+    } else {
+      this.startAnimation();
+    }
   }
 
   dailySignIn() {
@@ -85,11 +90,7 @@ export default class Main {
     }
 
     // View handling for streak and points
-    this.htmlView.updatePoints_html(this.gameData.totalPoints);
-    this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
-    // set display
-    this.htmlView.updateHunger_html(this.gameData.hungry);
-    this.htmlView.updateHappy_html(this.gameData.happy);
+    this.callToUpdateStats();
 
     if (this.gameData.hungry == 0 && this.gameData.happy == 0) {
       this.gameData.ranAway == true;
@@ -97,6 +98,14 @@ export default class Main {
 
     if (this.gameData.ranAway == true) {
     }
+  }
+
+  callToUpdateStats() {
+    this.htmlView.updatePoints_html(this.gameData.totalPoints);
+    this.htmlView.displayLogInData(this.loginHandler.getLogInData_asJSON());
+    // set display
+    this.htmlView.updateHunger_html(this.gameData.hungry);
+    this.htmlView.updateHappy_html(this.gameData.happy);
   }
 
   startAnimation() {
@@ -109,6 +118,14 @@ export default class Main {
     this.foodAnimationInterval = setInterval(() => {
       this.foodOnGround--;
     }, 700);
+  }
+
+  canvasDisplayGameOver() {
+    let textWidth = this.canvas.width - 100;
+    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
+    this.ctx.font = "48px Malboro";
+    this.ctx.fillText("Oh No, Partner!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2, this.canvas.width - 100);
+    this.ctx.fillText("Your cock ran away!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2 + 40, this.canvas.width - 100);
   }
 
   cloudBackground() {
@@ -237,33 +254,45 @@ export default class Main {
   }
 
   actionButton1() {
-    this.gameData.hasPoop = this.action.clean(this.gameData.hasPoop);
-    this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
-    this.userDataHandler.saveUserData(this.gameData);
-    this.htmlView.updatePoints_html(this.gameData.totalPoints);
-    this.poonCleanUp = 5;
-  }
-
-  actionButton2() {
-    if (this.foodOnGround <= 0 && this.gameData.hungry < 5) {
-      this.gameData.hungry = this.action.feed(this.gameData.hungry);
-      this.htmlView.updateHunger_html(this.gameData.hungry);
-      this.foodOnGround = 4;
+    if (!this.gameData.ranAway) {
+      this.gameData.hasPoop = this.action.clean(this.gameData.hasPoop);
       this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
       this.userDataHandler.saveUserData(this.gameData);
       this.htmlView.updatePoints_html(this.gameData.totalPoints);
-      this.foodCounterAnimation();
+      this.poonCleanUp = 5;
+    } else {
+      this.resetGame();
+    }
+  }
+
+  actionButton2() {
+    if (!this.gameData.ranAway) {
+      if (this.foodOnGround <= 0 && this.gameData.hungry < 5) {
+        this.gameData.hungry = this.action.feed(this.gameData.hungry);
+        this.htmlView.updateHunger_html(this.gameData.hungry);
+        this.foodOnGround = 4;
+        this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
+        this.userDataHandler.saveUserData(this.gameData);
+        this.htmlView.updatePoints_html(this.gameData.totalPoints);
+        this.foodCounterAnimation();
+      }
+    } else {
+      this.resetGame();
     }
   }
 
   actionButton3() {
-    if (this.chickenJump <= 0 && this.gameData.happy < 5) {
-      this.gameData.happy = this.action.train(this.gameData.happy);
-      this.htmlView.updateHappy_html(this.gameData.happy);
-      this.chickenJump = 50;
-      this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
-      this.userDataHandler.saveUserData(this.gameData);
-      this.htmlView.updatePoints_html(this.gameData.totalPoints);
+    if (!this.gameData.ranAway) {
+      if (this.chickenJump <= 0 && this.gameData.happy < 5) {
+        this.gameData.happy = this.action.train(this.gameData.happy);
+        this.htmlView.updateHappy_html(this.gameData.happy);
+        this.chickenJump = 50;
+        this.gameData = this.pointSystem.addNumPoints(this.gameData, 50);
+        this.userDataHandler.saveUserData(this.gameData);
+        this.htmlView.updatePoints_html(this.gameData.totalPoints);
+      }
+    } else {
+      this.resetGame();
     }
   }
 
@@ -284,5 +313,12 @@ export default class Main {
     let scale = 0;
     if (hungryStat < 3) scale = 1;
     return (happyStat -= 2 - scale);
+  }
+
+  resetGame() {
+    this.userDataHandler.resetGameData();
+    this.gameData = this.userDataHandler.getUserData_asJSON();
+    this.startAnimation();
+    this.callToUpdateStats();
   }
 }
