@@ -99,25 +99,21 @@ button:focus {
 }
 
 .buttons {
-  border: 6px solid var(--stroke);
+  border: 3px solid var(--stroke);
   padding: 8px 3px;
   background-color: var(--gray);
   border-radius: 100px;
   display: flex;
   justify-content: center;
-  /* float: right;
-  position: relative; */
-  /* transform: rotate(-20deg); */
-  /* top: 30px; */
 }
 .buttons button {
   background-color: var(--wanchaOrange);
-  border: 6px solid var(--stroke);
+  border: 2px solid var(--stroke);
   border-radius: 50%;
   width: 40px;
   height: 40px;
   padding: 0;
-  box-shadow: inset 4px 0 rgba(255, 255, 255, 0.7), inset -4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 3px 0 rgba(255, 255, 255, 0.7), inset -4px 0 rgba(0, 0, 0, 0.2);
   margin: 0 5px;
 }
 
@@ -139,30 +135,4 @@ button:focus {
   border-style: solid;
   border-color: #522438;
   border-width: 2px;
-}
-
-/* Style the button that is used to open and close the collapsible content */
-#collapsibleButtonList {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active,
-.collapsibleButtonList:hover {
-  background-color: #ccc;
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
 }
