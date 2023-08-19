@@ -125,7 +125,7 @@ export default class Main {
     this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
     this.ctx.font = "48px Malboro";
     this.ctx.fillText("Oh No, Partner!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2, this.canvas.width - 100);
-    this.ctx.fillText("Your cock ran away!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2 + 40, this.canvas.width - 100);
+    this.ctx.fillText("Your Cock Ran Away!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2 + 40, this.canvas.width - 100);
   }
 
   cloudBackground() {
@@ -260,6 +260,7 @@ export default class Main {
       this.userDataHandler.saveUserData(this.gameData);
       this.htmlView.updatePoints_html(this.gameData.totalPoints);
       this.poonCleanUp = 5;
+      this.userDataHandler.modifyGameData();
     } else {
       this.resetGame();
     }

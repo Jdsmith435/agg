@@ -19,18 +19,18 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   padding-top: 70px;
+  height: calc(100% - 70px);
 }
 
 #informationContainer {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 15px;
+  height: 30%;
+  margin-bottom: 50px;
 }
 
 #RanAwayFilter {
@@ -62,14 +62,17 @@ main {
 #statusBarHappy,
 #statusBarHungry {
   color: #f26a05;
+  height: 70%;
+  margin: 0px;
 }
 
 #statsBar {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   width: 90%;
+  height: 30%;
+  position: relative;
 }
 
 #statsTextBar {
