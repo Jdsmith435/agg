@@ -70,7 +70,11 @@ export default class Main {
     this.chickenPosX = this.canvas.width / 2;
     this.foodPosition = this.canvas.width * 0.65;
 
-    if (this.gameData.ranAway) {
+    this.gameData.hungry = this.generateHungryStat(this.gameData.hungry);
+    this.gameData.happy = this.generateHappyStat(this.gameData.happy, this.gameData.hungry);
+
+    if (this.gameData.hungry <= 0 && this.gameData.happy <= 0) {
+      this.gameData.ranAway = true;
       this.canvasDisplayGameOver();
     } else {
       this.startAnimation();
@@ -84,20 +88,11 @@ export default class Main {
       this.loginHandler.recordDailySignInData(this.loginHandler.getLogInData_asJSON());
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
       if (this.userDataHandler.petAge != Ages[1]) this.gameData.hasPoop = this.userDataHandler.togglePoop(this.gameData.hasPoop);
-      this.gameData.hungry = this.generateHungryStat(this.gameData.hungry);
-      this.gameData.happy = this.generateHappyStat(this.gameData.happy, this.gameData.hungry);
       this.userDataHandler.saveUserData(this.gameData);
     }
 
     // View handling for streak and points
     this.callToUpdateStats();
-
-    if (this.gameData.hungry == 0 && this.gameData.happy == 0) {
-      this.gameData.ranAway == true;
-    }
-
-    if (this.gameData.ranAway == true) {
-    }
   }
 
   callToUpdateStats() {
@@ -260,7 +255,7 @@ export default class Main {
       this.userDataHandler.saveUserData(this.gameData);
       this.htmlView.updatePoints_html(this.gameData.totalPoints);
       this.poonCleanUp = 5;
-      this.userDataHandler.modifyGameData();
+      this.loginHandler.modifyLogInData();
     } else {
       this.resetGame();
     }

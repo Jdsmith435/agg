@@ -23,22 +23,30 @@ export default class HtmlView {
 
   updateHunger_html(hungerLevel) {
     let hearts = "";
-    for (let i = 0; i < hungerLevel; i++) {
-      hearts += "\u2665";
-    }
-    for (let i = 0; i < 5 - hungerLevel; i++) {
-      hearts += "\u2661";
+    if (hungerLevel > 0) {
+      for (let i = 0; i < hungerLevel; i++) {
+        hearts += "\u2665";
+      }
+      for (let i = 0; i < 5 - hungerLevel; i++) {
+        hearts += "\u2661";
+      }
+    } else {
+      hearts = "\u2661\u2661\u2661\u2661\u2661";
     }
     document.getElementById("statusBarHungry").innerHTML = "Chock-full: " + hearts;
   }
 
   updateHappy_html(happyLevel) {
     let hearts = "";
-    for (let i = 0; i < happyLevel; i++) {
-      hearts += "\u2665";
-    }
-    for (let i = 0; i < 5 - happyLevel; i++) {
-      hearts += "\u2661";
+    if (happyLevel > 0) {
+      for (let i = 0; i < happyLevel; i++) {
+        hearts += "\u2665";
+      }
+      for (let i = 0; i < 5 - happyLevel; i++) {
+        hearts += "\u2661";
+      }
+    } else {
+      hearts = "\u2661\u2661\u2661\u2661\u2661";
     }
     document.getElementById("statusBarHappy").innerHTML = "Tickled Pink: " + hearts;
   }
