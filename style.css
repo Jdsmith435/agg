@@ -20,7 +20,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 70px;
+  padding-top: 100px;
   height: calc(100% - 70px);
 }
 
@@ -48,7 +48,7 @@ main {
 #titleText {
   font-family: "Malboro";
   font-size: 5em;
-  color: #f26a05;
+  color: var(--wanchaOrange);
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #522438;
   margin: 0pt;
@@ -61,7 +61,7 @@ main {
 
 #statusBarHappy,
 #statusBarHungry {
-  color: #f26a05;
+  color: var(--wanchaOrange);
   height: 70%;
   margin: 0px;
 }
@@ -122,10 +122,7 @@ button:focus {
 }
 
 :root {
-  --pink: #fad1d9;
-  --blue: #c5f6ff;
   --stroke: #522438;
-  --green: #c2e688;
   --wanchaOrange: #f26a05;
   --light-brow: #846662;
   --gray: #9ea1af;
@@ -137,7 +134,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   padding: 5px;
-  background-color: #f26a05;
+  background-color: var(--wanchaOrange);
   width: 90%;
   border-style: solid;
   border-color: #522438;
