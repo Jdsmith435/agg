@@ -116,7 +116,7 @@ export default class Main {
 
   canvasDisplayGameOver() {
     let textWidth = this.canvas.width - 100;
-    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
+    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height - 20, this.canvas.width + 130, this.plateau.height + 20);
     this.ctx.font = "48px Malboro";
     this.ctx.fillText("Oh No, Partner!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2, this.canvas.width - 100);
     this.ctx.fillText("Your Chicken Ran Away!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2 + 40, this.canvas.width - 100);
