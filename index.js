@@ -70,9 +70,6 @@ export default class Main {
     this.chickenPosX = this.canvas.width / 2;
     this.foodPosition = this.canvas.width * 0.65;
 
-    this.gameData.hungry = this.generateHungryStat(this.gameData.hungry);
-    this.gameData.happy = this.generateHappyStat(this.gameData.happy, this.gameData.hungry);
-
     if (this.gameData.hungry <= 0 && this.gameData.happy <= 0) {
       this.gameData.ranAway = true;
       this.canvasDisplayGameOver();
@@ -87,6 +84,8 @@ export default class Main {
     ) {
       this.loginHandler.recordDailySignInData(this.loginHandler.getLogInData_asJSON());
       this.pointSystem.addDSIPoints(this.userDataHandler, this.gameData);
+      this.gameData.hungry = this.generateHungryStat(this.gameData.hungry);
+      this.gameData.happy = this.generateHappyStat(this.gameData.happy, this.gameData.hungry);
       if (this.userDataHandler.petAge != Ages[1]) this.gameData.hasPoop = this.userDataHandler.togglePoop(this.gameData.hasPoop);
       this.userDataHandler.saveUserData(this.gameData);
     }
