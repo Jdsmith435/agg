@@ -45,6 +45,8 @@ export default class Main {
   // interval ids
   foodAnimationInterval;
 
+  plateauHeight = 160;
+
   constructor() {
     this.pointSystem = new PointSystem();
     this.userDataHandler = new UserData();
@@ -117,7 +119,7 @@ export default class Main {
 
   canvasDisplayGameOver() {
     let textWidth = this.canvas.width - 100;
-    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height - 20, this.canvas.width + 130, this.plateau.height + 20);
+    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateauHeight + 15, this.canvas.width + 130, this.plateauHeight);
     this.ctx.font = "48px Malboro";
     this.ctx.fillText("Oh No, Partner!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2, this.canvas.width - 100);
     this.ctx.fillText("Your Chicken Ran Away!", this.canvas.width / 2 - textWidth / 2, this.canvas.height / 2 + 40, this.canvas.width - 100);
@@ -129,7 +131,7 @@ export default class Main {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.drawImage(this.small_cloud, this.xPosSlow, 20, 50, 20);
     this.ctx.drawImage(this.big_cloud, this.xPosFast, 45, 160, 80);
-    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateau.height, this.canvas.width + 130, this.plateau.height + 20);
+    this.ctx.drawImage(this.plateau, -20, this.canvas.height - this.plateauHeight + 15, this.canvas.width + 130, this.plateauHeight);
 
     let chickenHeight;
     if (this.foodOnGround > 0) this.chickenPosX = this.foodPosition - 90;
