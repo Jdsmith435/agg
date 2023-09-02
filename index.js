@@ -308,8 +308,24 @@ export default class Main {
 
   generateHappyStat(happyStat, hungryStat) {
     let scale = 0;
-    if (hungryStat < 3) scale = 1;
-    return (happyStat -= 2 - scale);
+    switch (hungryStat) {
+      case 5:
+        scale = 0;
+        break;
+      case 4:
+        scale = 0;
+        break;
+      case 3:
+        scale = 1;
+        break;
+      case 2:
+        scale = 2;
+        break;
+      default:
+        scale = 3;
+    }
+
+    return (happyStat -= 2 + scale);
   }
 
   resetGame() {
