@@ -33,7 +33,7 @@ export default class HtmlView {
     } else {
       hearts = "\u2661\u2661\u2661\u2661\u2661";
     }
-    document.getElementById("statusBarHungry").innerHTML = "Chock-full: " + hearts;
+    document.getElementById("statusBarHungry").innerHTML = "Hungry: " + hearts;
   }
 
   updateHappy_html(happyLevel) {
@@ -48,7 +48,7 @@ export default class HtmlView {
     } else {
       hearts = "\u2661\u2661\u2661\u2661\u2661";
     }
-    document.getElementById("statusBarHappy").innerHTML = "Tickled Pink: " + hearts;
+    document.getElementById("statusBarHappy").innerHTML = "Happy: " + hearts;
   }
 
   displayLogInData(userData) {
